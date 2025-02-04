@@ -13,15 +13,15 @@ public partial class Reserva
 
     public DateOnly Fecha { get; set; }
 
-    public TimeOnly HoraInicio { get; set; }
+    public TimeSpan HoraInicio { get; set; }
 
-    public TimeOnly HoraFin { get; set; }
+    public TimeSpan HoraFin { get; set; }
 
     public virtual ICollection<Calificacion> Calificaciones { get; set; } = new List<Calificacion>();
 
     public virtual ICollection<Prestamo> Prestamos { get; set; } = new List<Prestamo>();
 
-    public virtual Recurso Recurso { get; set; } = null!;
+    public virtual Recurso? Recurso { get; set; } 
 
-    public virtual Usuario Usuario { get; set; } = null!;
+    public virtual Usuario? Usuario { get; set; } 
 }

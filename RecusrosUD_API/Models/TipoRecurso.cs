@@ -22,5 +22,5 @@ public partial class TipoRecurso
 
     public virtual ICollection<Recurso> Recursos { get; set; } = new List<Recurso>();
 
-    public virtual UnidadServicio Unidad { get; set; } = null!;
+    public virtual UnidadServicio? Unidad { get; set; } = null!;
 }

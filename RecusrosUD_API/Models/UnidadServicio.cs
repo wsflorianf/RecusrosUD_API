@@ -15,7 +15,7 @@ public partial class UnidadServicio
     public string HorarioDisponibilidad { get; set; } = null!;
 
     [Required]
-    public TimeOnly TiempoMin { get; set; }
+    public TimeSpan TiempoMin { get; set; }
 
     public virtual ICollection<TipoRecurso> TiposRecursos { get; set; } = new List<TipoRecurso>();
 }

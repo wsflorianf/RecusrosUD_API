@@ -21,5 +21,5 @@ public partial class Recurso
 
     public virtual ICollection<Reserva> Reservas { get; set; } = new List<Reserva>();
 
-    public virtual TipoRecurso TipoRecurso { get; set; } = null!;
+    public virtual TipoRecurso? TipoRecurso { get; set; } = null!;
 }

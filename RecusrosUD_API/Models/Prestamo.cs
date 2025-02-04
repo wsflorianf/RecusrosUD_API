@@ -9,9 +9,9 @@ public partial class Prestamo
 
     public long ReservaId { get; set; }
 
-    public TimeOnly? HoraEntrega { get; set; }
+    public TimeSpan? HoraEntrega { get; set; }
 
-    public TimeOnly? HoraDevolucion { get; set; }
+    public TimeSpan? HoraDevolucion { get; set; }
 
     public long? EmpleadoEntregaId { get; set; }
 
