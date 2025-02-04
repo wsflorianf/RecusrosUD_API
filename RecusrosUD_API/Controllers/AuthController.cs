@@ -23,7 +23,7 @@ namespace RecusrosUD_API.Controllers
         {
             var usuario = await _authService.ValidarCredencialesAsync(datos.Correo, datos.Contra);
             if (usuario == null)
-                return Unauthorized(new { mensaje = "Credenciales incorrectas" });
+                return Unauthorized(new { Message = "Credenciales incorrectas" });
 
             var token = _jwtService.GenerarToken(usuario.Correo, (int)usuario.Id, usuario.Admin);            
 

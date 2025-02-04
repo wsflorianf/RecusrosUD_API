@@ -46,14 +46,14 @@ namespace RecusrosUD_API.Controllers
 
             if (unidadServicio == null)
             {
-                return BadRequest("Unidad de servicio no encontrada.");
+                return BadRequest(new { Message = "Unidad de servicio no encontrada." });
             }
 
             var horarioTipo = JsonConvert.DeserializeObject<Dictionary<string, Dia>>(nuevo.HorarioDisponibilidad);
             var horarioUnidad = JsonConvert.DeserializeObject<Dictionary<string, Dia>>(unidadServicio.HorarioDisponibilidad);
 
-            if (horarioTipo == null) return BadRequest("Hubo un error con el horario recibido.");
-            if (horarioUnidad == null) return BadRequest("Hubo un error con el horario de la Unidad de Servicio.");
+            if (horarioTipo == null) return BadRequest(new {Message = "Hubo un error con el horario recibido." });
+            if (horarioUnidad == null) return BadRequest(new { Message = "Hubo un error con el horario de la Unidad de Servicio." });
 
 
             // 2. Validar los horarios del TipoRecurso
@@ -66,15 +66,15 @@ namespace RecusrosUD_API.Controllers
                     var tipoRecursoDia = dia.Value;
 
                     // 5. Verificar si el horario del TipoRecurso está dentro del horario de la UnidadServicio
-                    if (!IsHorarioValido(tipoRecursoDia, unidadDia, unidadServicio.TiempoMin.ToTimeSpan()))
+                    if (!IsHorarioValido(tipoRecursoDia, unidadDia, unidadServicio.TiempoMin))
                     {
-                        return BadRequest($"El horario del {dia.Key} no está dentro del rango permitido por la unidad de servicio.");
+                        return BadRequest(new {Message = $"El horario del {dia.Key} no está dentro del rango permitido por la unidad de servicio." });
                     }
                 }
                 else
                 {
                     // Si el día no está presente en la UnidadServicio
-                    return BadRequest($"No se encontró horario para el día {dia.Key} en la unidad de servicio.");
+                    return BadRequest(new { Message = $"No se encontró horario para el día {dia.Key} en la unidad de servicio." });
                 }
             }
 

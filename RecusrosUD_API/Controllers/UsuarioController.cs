@@ -57,7 +57,7 @@ namespace RecusrosUD_API.Controllers
 
             var existe = await _usuarioService.ExisteCorreoAsync(nuevo.Correo);
 
-            if (existe) return BadRequest(new { mensaje = "Ya existe un usuario registrado con este correo electrónico." });
+            if (existe) return BadRequest(new { Message = "Ya existe un usuario registrado con este correo electrónico." });
 
             await _usuarioService.CreateUsuarioAsync(nuevo);
 

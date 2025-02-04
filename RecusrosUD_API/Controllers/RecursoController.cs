@@ -39,11 +39,12 @@ namespace RecusrosUD_API.Controllers
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] Recurso nuevo)
         {
-            var tipoRecurso = await _tipoRecursoService.GetTipoByIdAsync(nuevo.Id);
+
+            var tipoRecurso = await _tipoRecursoService.GetTipoByIdAsync(nuevo.TipoRecursoId);
 
             if(tipoRecurso == null)
             {
-                return BadRequest("No se encontró el tipo de recurso.");
+                return BadRequest(new { Message = "No se encontró el tipo de recurso." });
             }
 
             var creado = await _recursoService.CreateRecursoAsync(nuevo);
