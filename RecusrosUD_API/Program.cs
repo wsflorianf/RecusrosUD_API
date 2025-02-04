@@ -23,6 +23,7 @@ builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<UnidadService>();
 builder.Services.AddScoped<TipoRecursoService>();
 builder.Services.AddScoped<RecursoService>();
+builder.Services.AddScoped<ReservaService>();
 builder.Services.AddSingleton<JwtService>();
 
 
