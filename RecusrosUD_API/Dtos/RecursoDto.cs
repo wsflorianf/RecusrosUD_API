@@ -11,5 +11,9 @@
         public string Identificador { get; set; } = null!;
 
         public string? Caracteristicas { get; set; }
+
+        public string HorarioDisponibilidad { get; set; } = null!;
+
+        public TimeSpan TiempoMin { get; set; }
     }
 }
