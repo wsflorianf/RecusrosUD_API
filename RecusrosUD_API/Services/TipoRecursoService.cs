@@ -12,7 +12,7 @@ namespace RecusrosUD_API.Services
 
         public async Task<TipoRecursoDto?> GetTipoByIdAsync(long id)
         {
-            return await _context.TiposRecursos.Select(tr => new TipoRecursoDto
+            return await _context.TiposRecursos.Where(tr => tr.Id == id).Select(tr => new TipoRecursoDto
             {
                 Id = tr.Id,
                 Nombre = tr.Nombre,
@@ -20,7 +20,7 @@ namespace RecusrosUD_API.Services
                 HorarioDisponibilidad = tr.HorarioDisponibilidad,
                 Caracteristicas = tr.Caracteristicas,
                 NombreUnidad = tr.Unidad.Nombre
-            }).FirstOrDefaultAsync(tr => tr.Id == id);
+            }).FirstOrDefaultAsync();
         }
 
         public async Task<IEnumerable<TipoRecursoDto>> GetTiposRecursoAsync()
@@ -42,13 +42,17 @@ namespace RecusrosUD_API.Services
 
             await _context.SaveChangesAsync();
 
-            var creado = RecursoToDto(nuevoTipo);
+            var creadoConRelaciones = await _context.TiposRecursos.Include(tr => tr.Unidad).FirstOrDefaultAsync(tr => tr.Id == nuevoTipo.Id);
 
-            return creado;
+            return TipoRecursoToDto(creadoConRelaciones);
         }
 
-        public static TipoRecursoDto RecursoToDto(TipoRecurso tipo)
+        public static TipoRecursoDto TipoRecursoToDto(TipoRecurso? tipo)
         {
+            if(tipo == null)
+            {
+                throw new ArgumentNullException(nameof(tipo));
+            }
             return new TipoRecursoDto
             {
                 Id = tipo.Id,
